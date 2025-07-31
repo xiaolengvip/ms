@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_APP=app.py
+      - FLASK_ENV=production
+      - SECRET_KEY=your-secret-key-here
+      - DEBUG=False
+      - PORT=5000
+    volumes:
+      - ./downloads:/app/downloads
+    restart: always
+
+  # 可选：添加Redis服务用于缓存
+  # redis:
+  #   image: redis:6-alpine
+  #   volumes:
+  #     - redis-data:/data
+  #   restart: always
+
+# volumes:
+#   redis-data:
